@@ -1,15 +1,14 @@
 import React from 'react';
 
 export default class ChooseGamePlayerComponent extends React.Component {
-    constructor(props)
-    {
-     super(props);
-    }
-
+   
+    componentDidMount(){
+        console.log(this.props.location.state)
+        }
     render() {
         return (
          <div>
-            <p>Page de choix pour quel Joueur choisir </p>
+            <p>Age:{this.props.location.state.age}</p> 
          </div>
         );
     }
