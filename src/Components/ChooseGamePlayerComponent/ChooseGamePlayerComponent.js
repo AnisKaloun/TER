@@ -28,7 +28,10 @@ export default class ChooseGamePlayerComponent extends React.Component {
                pathname :'/Game',
                state :
                {
-                player :'walter'
+                player :'walter',
+                age:this.state.Age,
+                sexe:this.state.Sexe,
+                Profession:this.state.Profession
                }
             }
             }>
@@ -76,24 +79,7 @@ export default class ChooseGamePlayerComponent extends React.Component {
                pathname :'/Game',
                state :
                {
-                player :'saul',
-                age:this.state.Age,
-                sexe:this.state.Sexe,
-                Profession:this.state.Profession
-               }
-            }
-            }>
-            <Button>Saul Goodman</Button>
-
-            </Link>
-
-
-
-            <Link to={{
-               pathname :'/Game',
-               state :
-               {
-                player :'gustavo',
+                player :'gus',
                 age:this.state.Age,
                 sexe:this.state.Sexe,
                 Profession:this.state.Profession

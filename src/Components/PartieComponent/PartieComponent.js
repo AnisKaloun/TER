@@ -5,13 +5,6 @@ import axios from 'axios';
 const Url = 'http://localhost:8888';
 
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
 
 function MyVerticallyCenteredModal(props) {
 
@@ -142,7 +135,7 @@ export default class PartieComponent extends React.Component {
     AfficherResult(number) {
         console.log("je rentre içi")
         if (number == 1) {
-            console.log("choix 1:" + this.state.situation.id_choix1)
+            console.log("choix 1: " + this.state.situation.id_choix1)
             this.setState({ Result: this.state.situation.text_resultat1 })
             this.InsererChoix(this.state.situation.id_choix1);
         }
