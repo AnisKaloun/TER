@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
-import { Link ,Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class FormulairePlayer extends React.Component {
 
@@ -23,18 +23,22 @@ export default class FormulairePlayer extends React.Component {
     handleSubmit(event) {
         console.log("I'm here")
         event.preventDefault();
-        
-        
+
+
         this.props.history.push({
             pathname: "/StartGame",
-            state: {
-              age: this.state.Age,
-              sexe: this.state.Sexe,
-              profession: this.state.Profession,
-            },
-          });
-        
-     
+            state: 
+            {
+                
+                
+                    age: this.state.Age,
+                    sexe: this.state.Sexe,
+                    profession: this.state.Profession,
+            
+            }
+        });
+
+
     }
 
     render() {
@@ -62,9 +66,9 @@ export default class FormulairePlayer extends React.Component {
                             <option value="Sans emploi">Sans emploi</option>
                         </Form.Control>
                     </Form.Group>
-                    
-                        <Button variant="primary" type="submit" >
-                            Suivant
+
+                    <Button variant="primary" type="submit" >
+                        Suivant
                     </Button>
                 </Form>
             </div>
