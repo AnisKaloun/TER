@@ -3,6 +3,9 @@ var mysql = require('mysql');
 var express = require('express');
 var app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
@@ -101,6 +104,36 @@ app.get("/Scenario", (req, res) => {
 })
 });
 
+app.post("/InsertionUser",(req,res) =>{
+
+    var user = req.body;
+    // Do a MySQL query.
+    console.log(user);
+    connection.query('INSERT INTO UTILISATEUR SET ?', user, function(err, result) {
+      if(err) throw err
+      else
+      {
+        res.end(""+result.insertId);
+      }
+    });
+
+})
+ 
+app.post("/InsertionResultat",(req,res)=>
+{
+    var resultat = req.body;
+    // Do a MySQL query.
+    console.log(resultat);
+    
+    connection.query('INSERT INTO RESULTAT SET ?', resultat, function(err, result) {
+      if(err) throw err
+      else
+      {
+        res.end("success");
+      }
+    });
+    
+})
 
 app.listen(8888);
 

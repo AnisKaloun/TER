@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
+
+const Url = 'http://localhost:8888';
 export default class FormulairePlayer extends React.Component {
 
     constructor(props) {
@@ -24,6 +27,9 @@ export default class FormulairePlayer extends React.Component {
         console.log("I'm here")
         event.preventDefault();
 
+        console.log("envoie de :"+this.state.Age);
+
+       
 
         this.props.history.push({
             pathname: "/StartGame",

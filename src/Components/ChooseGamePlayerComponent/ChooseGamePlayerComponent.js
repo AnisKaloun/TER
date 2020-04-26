@@ -8,9 +8,9 @@ export default class ChooseGamePlayerComponent extends React.Component {
      super(props);
      this.state=
      {
-       Age:'',
-       Sexe:'',
-       Profession:'' 
+       Age:null,
+       Sexe:null,
+       Profession:null 
      }
     }
     componentDidMount(){
