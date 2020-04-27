@@ -47,6 +47,7 @@ app.get("/Scenario", (req, res) => {
             if (element.id_choix1) {
                 //on as trouvé le choix 1
                 connection.query('Select * from CHOIX where id_scenario ="scenario_'+joueur+'" and id_choix="' + element.id_choix1 + '"', function (err, rows, fields) {
+                    console.log(this.sql)
                     if (err) throw err
                     else {
                         var json = { text_choix1: rows[0].text_choix, text_resultat1: rows[0].text_resultat, id_situation1: rows[0].id_next_situation };

@@ -47,6 +47,8 @@ export default class PartieComponent extends React.Component {
             FinPartie: false,
             MessageFin: "La Partie c'est finis",
             modalShow: false,
+            hideB2:false,
+            hideB3:false,
             row_insertion:
             {
                 id_utilisateur: '',
@@ -170,18 +172,50 @@ export default class PartieComponent extends React.Component {
             situationNumber = this.state.situation.id_situation3;
 
         }
+
         var i;
+        this.CasParticulierJesse(situationNumber);
+        this.CasParticulierHank(situationNumber);
         for (i = 0; i < this.state.Scenario.length; i++) {
             if (this.state.Scenario[i].id_situation === situationNumber) {
-
-                this.setState({
-                    situation: this.state.Scenario[i]
-                });
-                console.log("situation " + this.state.situation.text_situation)
+               
+                this.setState({ situation: this.state.Scenario[i]});
+                console.log("B2 : "+this.state.hideB2+"B3 : "+this.state.hideB3)
             }
 
         }
 
+    }
+
+    CasParticulierJesse(situationNumber)
+    {
+        if (situationNumber == 6 && this.state.situation.id_scenario == "scenario_hank") {
+            if (this.state.row_insertion.id_choix1 == "C1") {
+
+                this.setState({hideB3:true});
+            }
+            else if (this.state.row_insertion.id_choix1 == "C2") {
+                this.setState({hideB2:true});
+
+            }
+
+        }
+    }
+
+
+    CasParticulierHank(situationNumber)
+    {
+        if (situationNumber == 9 && this.state.situation.id_scenario == "scenario_jesse") {
+            if (this.state.row_insertion.id_choix1 == "C1") {
+
+                this.setState({hideB2:true});
+            }
+            else if (this.state.row_insertion.id_choix1 == "C2") {
+                this.setState({hideB3:true});
+
+            }
+
+        }
     }
 
     handleClick(e) {
@@ -204,7 +238,7 @@ export default class PartieComponent extends React.Component {
                     console.log(response.data);
                     this.state.row_insertion.id_utilisateur = response.data;
                     axios.post(Url + '/InsertionResultat', {
-                        id_utilisateur:response.data,
+                        id_utilisateur: response.data,
                         id_scenario: this.state.row_insertion.id_scenario,
                         id_choix1: this.state.row_insertion.id_choix1,
                         id_choix2: this.state.row_insertion.id_choix2,
@@ -219,9 +253,9 @@ export default class PartieComponent extends React.Component {
                         id_choix11: this.state.row_insertion.id_choix11,
                         id_choix12: this.state.row_insertion.id_choix12,
                         id_choix13: this.state.row_insertion.id_choix13
-                     }).then((response) => {
+                    }).then((response) => {
                         console.log(response);
-                    },(error)=> {
+                    }, (error) => {
                         console.log(error);
                     });
 
@@ -249,10 +283,10 @@ export default class PartieComponent extends React.Component {
                 {!this.state.FinPartie && this.state.situation.text_choix1 &&
                     <Button name="1" onClick={this.handleClick}>{this.state.situation.text_choix1}</Button>
                 }
-                {!this.state.FinPartie && this.state.situation.text_choix2 &&
+                {!this.state.FinPartie && !this.state.hideB2 && this.state.situation.text_choix2 &&
                     <Button name="2" onClick={this.handleClick}>{this.state.situation.text_choix2}</Button>
                 }
-                {!this.state.FinPartie && this.state.situation.text_choix3 &&
+                {!this.state.FinPartie && !this.state.hideB3 && this.state.situation.text_choix3 &&
                     <Button name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
                 }
 
