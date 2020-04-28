@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import {Prompt} from "react-router-dom";
 
 const Url = 'http://localhost:8888';
 
@@ -294,6 +295,10 @@ export default class PartieComponent extends React.Component {
 
         return (
             <div>
+                <Prompt
+                 when={!!this.state.row_insertion.id_choix1}
+                 message="Etes vous sur de vouloir sortir ? votre avancé seras perdu "
+                />
                 <p>Vous avez choisis le joueur {this.props.location.state.player}</p>
                 {!this.state.modalShow && this.state.FinPartie &&
                     <p>{this.state.MessageFin}</p>}

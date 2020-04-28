@@ -47,6 +47,10 @@ export default class FormulairePlayer extends React.Component {
     render() {
         return (
             <div>
+                <Prompt
+                 when={!!this.state.Age}
+                 message="Etes vous sur de vouloir sortir ? vos informations seront perdu "
+                />
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group as={Col} controlId="formAge">
                         <Form.Label>Age</Form.Label>
