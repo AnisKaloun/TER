@@ -19,11 +19,18 @@ export default class ChooseGamePlayerComponent extends React.Component {
         }
     render() {
         return (
-         <div>
-             <p>Age : {this.state.Age}</p>
-             <p>Sexe :{this.state.Sexe}</p>
-             <p>Profession:{this.state.Profession}</p>
-            <p>ici vous allez choisir quel Personnage Vous jouez</p>
+         <div style={{
+            padding: '20px',
+            position: 'absolute', left: '50%', top: '50%',
+            transform: 'translate(-50%, -50%)',
+            border: '1.5px solid',
+            'box-shadow': '1px 1px 12px #555',
+            'text-align' : 'center',
+            'background-color': 'rgb(230,230,230)'
+        }}>
+            <p>Choisissez le personnage que vous souhaitez jouer : </p>
+
+            <p><strong>Profil : </strong>Ancien professeur de chimie qui se lance dans le milieu de la drogue</p>
             <Link to={{
                pathname :'/Game',
                state :
@@ -35,12 +42,14 @@ export default class ChooseGamePlayerComponent extends React.Component {
                }
             }
             }>
-            <Button>Walter White</Button>
+
+            <Button style= {{
+            "margin-right": "20px",
+            "margin-bottom": "20px"
+            }} variant="success">Walter White</Button>
             </Link>
 
- 
- 
- 
+            <p><strong>Profil : </strong>Jeune délinquant de petit envergure déscolarisé et baignant dans le monde de la drogue</p>
             <Link to={{
                pathname :'/Game',
                state :
@@ -52,12 +61,15 @@ export default class ChooseGamePlayerComponent extends React.Component {
                }
             }
             }>
-            <Button>Jesse Pinkman</Button>
+
+            <Button style={{
+            "margin-right": "20px",
+            "margin-bottom": "20px"
+            }} variant="success">Jesse Pinkman</Button>
                     
             </Link>
             
-           
-           
+            <p><strong>Profil : </strong>Policier membre de la section anti-drogue, beau-frère de Walter White</p>
             <Link to={{
                pathname :'/Game',
                state :
@@ -69,12 +81,15 @@ export default class ChooseGamePlayerComponent extends React.Component {
                }
             }
             }>
-            <Button>Hank Schrader</Button>
+
+            <Button style={{
+            "margin-right": "20px",
+            "margin-bottom": "20px"
+            }} variant="success">Hank Schrader</Button>
 
             </Link>
 
-
-
+            <p><strong>Profil : </strong>Patron d'une grande ligne de fast-food qu'il utilise afin de dissimuler un immense trafic de drogue</p>
             <Link to={{
                pathname :'/Game',
                state :
@@ -86,8 +101,10 @@ export default class ChooseGamePlayerComponent extends React.Component {
                }
             }
             }>
-     
-            <Button>Gustavo Fring</Button>
+
+            <Button style={{
+            "margin-right": "20px"
+            }} variant="success">Gustavo Fring</Button>
             </Link>
          </div>
         );

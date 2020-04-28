@@ -47,18 +47,30 @@ export default class FormulairePlayer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{
+                padding: '20px',
+                position: 'absolute', left: '50%', top: '50%',
+                transform: 'translate(-50%, -50%)',
+                border: '1.5px solid',
+                'box-shadow': '1px 1px 12px #555',
+                'text-align' : 'center',
+                'background-color': 'rgb(230,230,230)'
+            }}>
                 <Prompt
-                 when={!!this.state.Age}
+                 when={!this.state.Age}
                  message="Etes vous sur de vouloir sortir ? vos informations seront perdu "
                 />
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group as={Col} controlId="formAge">
+                    <Form.Group as={Col} controlId="formAge"  style= {{
+                    "margin-bottom": "20px"
+                    }}>
                         <Form.Label>Age</Form.Label>
                         <Form.Control required type="number" name="Age" value={this.state.Age} onChange={this.handleChange} placeholder="Age" />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formSexe">
+                    <Form.Group as={Col} controlId="formSexe" style= {{
+                    "margin-bottom": "20px"
+                    }}>
                         <Form.Label>Sexe</Form.Label>
                         <Form.Control name="Sexe" as="select" value={this.state.Sexe} onChange={this.handleChange} >
                             <option defaultValue="Homme">Homme</option>
@@ -66,7 +78,9 @@ export default class FormulairePlayer extends React.Component {
                         </Form.Control>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="formProfession">
+                    <Form.Group as={Col} controlId="formProfession" style= {{
+                    "margin-bottom": "20px"
+                    }}>
                         <Form.Label>Profession</Form.Label>
                         <Form.Control name="Profession" as="select" value={this.state.Profession} onChange={this.handleChange}>
                             <option defaultValue="Etudiant">Etudiant</option>
@@ -75,7 +89,7 @@ export default class FormulairePlayer extends React.Component {
                         </Form.Control>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" >
+                    <Button variant="success" type="submit" >
                         Suivant
                     </Button>
                 </Form>
