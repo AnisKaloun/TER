@@ -14,21 +14,12 @@ export default class NavigationBar extends React.Component {
                         height="30"
                         width="30"
                         className="d-inline-block align-top" 
-                        alt=" Home">
+                        alt=" Home"
+                        background= "transparent !important"
+                        >
                     </img>
                     </Link>
                     </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <NavItem >
-                            <Link to="/">Home</Link>
-                        </NavItem>
-                        <NavItem >
-                            <Link to="/about">About Us</Link>
-                        </NavItem>
-                    </Nav>
-                </Navbar.Collapse>
             </Navbar>
         );
     }
