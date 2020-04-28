@@ -295,18 +295,18 @@ export default class PartieComponent extends React.Component {
         return (
             <div>
                 <p>Vous avez choisis le joueur {this.props.location.state.player}</p>
-                {this.state.FinPartie &&
+                {!this.state.modalShow && this.state.FinPartie &&
                     <p>{this.state.MessageFin}</p>}
-                {!this.state.FinPartie && this.state.situation.text_situation &&
+                {!this.state.modalShow && !this.state.FinPartie && this.state.situation.text_situation &&
                     <p>{this.state.situation.text_situation}</p>
                 }
-                {!this.state.FinPartie && this.state.situation.text_choix1 &&
+                { !this.state.modalShow && !this.state.FinPartie && this.state.situation.text_choix1 &&
                     <Button name="1" onClick={this.handleClick}>{this.state.situation.text_choix1}</Button>
                 }
-                {!this.state.FinPartie && !this.state.hideB2 && this.state.situation.text_choix2 &&
+                { !this.state.modalShow && !this.state.FinPartie && !this.state.hideB2 && this.state.situation.text_choix2 &&
                     <Button name="2" onClick={this.handleClick}>{this.state.situation.text_choix2}</Button>
                 }
-                {!this.state.FinPartie && !this.state.hideB3 && this.state.situation.text_choix3 &&
+                { !this.state.modalShow && !this.state.FinPartie && !this.state.hideB3 && this.state.situation.text_choix3 &&
                     <Button name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
                 }
 
