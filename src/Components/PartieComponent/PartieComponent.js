@@ -177,6 +177,7 @@ export default class PartieComponent extends React.Component {
         this.CasParticulierJesse(situationNumber);
         this.CasParticulierHank(situationNumber);
         for (i = 0; i < this.state.Scenario.length; i++) {
+            console.log(" id dans le scenario : "+this.state.Scenario[i].id_situation+" id envoyé "+situationNumber)
             if (this.state.Scenario[i].id_situation === situationNumber) {
                
                 this.setState({ situation: this.state.Scenario[i]});
@@ -184,6 +185,24 @@ export default class PartieComponent extends React.Component {
             }
 
         }
+
+    }
+
+    CheckNextSituation(number)
+    {
+        if (number == 1 && this.state.situation.id_situation1) {
+            return true;
+        }
+        else if (number == 2 && this.state.situation.id_situation2) {
+            return true;
+
+        }
+        else if (number == 3 && this.state.situation.id_situation3) {
+            return true;
+        }
+
+        return false;
+
 
     }
 
@@ -222,12 +241,13 @@ export default class PartieComponent extends React.Component {
         console.log("number of choice" + indice);
         indice++;
         this.AfficherResult(e.currentTarget.name);
-        if (this.state.situation.id_situation1 && this.state.situation.id_situation2) {
+        if (this.CheckNextSituation(e.currentTarget.name)) {
             this.NextSituation(e.currentTarget.name);
         }
         else {
 
-            this.state.FinPartie = true;
+
+            this.setState({FinPartie:true});
             console.log()
             axios.post(Url + '/InsertionUser', {
                 age: this.state.utilisateur.Age,
@@ -290,7 +310,7 @@ export default class PartieComponent extends React.Component {
                     <Button name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
                 }
 
-                {!this.state.FinPartie && this.state.ShowResult && this.state.Result &&
+                { this.state.ShowResult && this.state.Result &&
                     <MyVerticallyCenteredModal
                         show={this.state.modalShow}
                         text={this.state.Result}
