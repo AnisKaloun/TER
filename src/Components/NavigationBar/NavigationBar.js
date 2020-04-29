@@ -7,19 +7,8 @@ export default class NavigationBar extends React.Component {
     render() {
         return (
             <Navbar bg="dark" variant="dark"  expand="lg">
-                <Navbar.Brand >
-                <Link to="/">
-                     <img 
-                        src={ image } 
-                        height="30"
-                        width="30"
-                        className="d-inline-block align-top" 
-                        alt=" Home"
-                        background= "transparent !important"
-                        >
-                    </img>
-                    </Link>
-                    </Navbar.Brand>
+                <Navbar.Brand href="/"><strong><span style={{color:"rgb(40,167,69)"}}>B</span>reaking <span style={{color:"rgb(40,167,69)"}}>B</span>ad</strong></Navbar.Brand>
+                <Navbar.Brand ><span style={{color:"rgb(40,167,69)"}}>R</span>ésultats (lien pas dispo)</Navbar.Brand>
             </Navbar>
         );
     }

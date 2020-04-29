@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
-import { Prompt } from "react-router-dom";
+import {Prompt} from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 const Url = 'http://localhost:8888';
 
@@ -16,7 +17,7 @@ function MyVerticallyCenteredModal(props) {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Body style={{
+            <Modal.Body style= {{
                 "text-align": "center"
             }}>
                 <p>
@@ -47,8 +48,8 @@ export default class PartieComponent extends React.Component {
             FinPartie: false,
             MessageFin: "Fin de la partie",
             modalShow: false,
-            hideB2: false,
-            hideB3: false,
+            hideB2:false,
+            hideB3:false,
             row_insertion:
             {
                 id_utilisateur: '',
@@ -177,42 +178,25 @@ export default class PartieComponent extends React.Component {
         this.CasParticulierJesse(situationNumber);
         this.CasParticulierHank(situationNumber);
         for (i = 0; i < this.state.Scenario.length; i++) {
-            console.log(" id dans le scenario : " + this.state.Scenario[i].id_situation + " id envoyé " + situationNumber)
             if (this.state.Scenario[i].id_situation === situationNumber) {
-
-                this.setState({ situation: this.state.Scenario[i] });
-                console.log("B2 : " + this.state.hideB2 + "B3 : " + this.state.hideB3)
+               
+                this.setState({ situation: this.state.Scenario[i]});
+                console.log("B2 : "+this.state.hideB2+"B3 : "+this.state.hideB3)
             }
 
         }
 
     }
 
-    CheckNextSituation(number) {
-        if (number == 1 && this.state.situation.id_situation1) {
-            return true;
-        }
-        else if (number == 2 && this.state.situation.id_situation2) {
-            return true;
-
-        }
-        else if (number == 3 && this.state.situation.id_situation3) {
-            return true;
-        }
-
-        return false;
-
-
-    }
-
-    CasParticulierJesse(situationNumber) {
+    CasParticulierJesse(situationNumber)
+    {
         if (situationNumber == 6 && this.state.situation.id_scenario == "scenario_hank") {
             if (this.state.row_insertion.id_choix1 == "C1") {
 
-                this.setState({ hideB3: true });
+                this.setState({hideB3:true});
             }
             else if (this.state.row_insertion.id_choix1 == "C2") {
-                this.setState({ hideB2: true });
+                this.setState({hideB2:true});
 
             }
 
@@ -220,14 +204,15 @@ export default class PartieComponent extends React.Component {
     }
 
 
-    CasParticulierHank(situationNumber) {
+    CasParticulierHank(situationNumber)
+    {
         if (situationNumber == 9 && this.state.situation.id_scenario == "scenario_jesse") {
             if (this.state.row_insertion.id_choix1 == "C1") {
 
-                this.setState({ hideB2: true });
+                this.setState({hideB2:true});
             }
             else if (this.state.row_insertion.id_choix1 == "C2") {
-                this.setState({ hideB3: true });
+                this.setState({hideB3:true});
 
             }
 
@@ -238,13 +223,12 @@ export default class PartieComponent extends React.Component {
         console.log("number of choice" + indice);
         indice++;
         this.AfficherResult(e.currentTarget.name);
-        if (this.CheckNextSituation(e.currentTarget.name)) {
+        if (this.state.situation.id_situation1 && this.state.situation.id_situation2) {
             this.NextSituation(e.currentTarget.name);
         }
         else {
 
-
-            this.setState({ FinPartie: true });
+            this.state.FinPartie = true;
             console.log()
             axios.post(Url + '/InsertionUser', {
                 age: this.state.utilisateur.Age,
@@ -290,44 +274,48 @@ export default class PartieComponent extends React.Component {
         console.log("Situation : " + this.state.situation.id_situation + " Situation Choix1: " + this.state.situation.id_situation1 + " Situation Choix2: " + this.state.situation.id_situation2);
 
         return (
-            <div style={{
+            <div style={{ 
                 padding: '20px',
                 position: 'absolute', left: '50%', top: '50%',
                 transform: 'translate(-50%, -50%)',
                 border: '1.5px solid',
                 'box-shadow': '1px 1px 12px #555',
-                'text-align': 'center',
+                'text-align' : 'center',
                 'background-color': 'rgb(230,230,230)'
-            }}
-            >
+            }}>
                 <Prompt
-                    when={!!this.state.row_insertion.id_choix1}
-                    message="Etes vous sur de vouloir sortir ? votre avancé seras perdu "
-                />
+                 when={this.state.row_insertion.id_choix1}
+                 message="Êtes-vous sûr de vouloir quitter la partie avant la fin ? Toute progression sera alors perdue ! "/>
 
                 <p><strong>Joueur : {this.props.location.state.player.charAt(0).toUpperCase() + this.props.location.state.player.substr(1)}</strong></p>
-                {!this.state.modalShow && this.state.FinPartie &&
+                {!this.state.situation.text_situation &&
+                    <React.Fragment>
+                        <p>Récupération des données du scénario ...</p>
+                        <Spinner animation="grow" variant="success" />
+                    </React.Fragment>
+                }
+                {this.state.FinPartie &&
                     <p>{this.state.MessageFin}</p>}
-                {!this.state.modalShow && !this.state.FinPartie && this.state.situation.text_situation &&
+                {!this.state.FinPartie && this.state.situation.text_situation &&
                     <p>{this.state.situation.text_situation}</p>
                 }
-                {!this.state.modalShow && !this.state.FinPartie && this.state.situation.text_choix1 &&
+                {!this.state.FinPartie && this.state.situation.text_choix1 &&
                     <Button style= {{
                         "margin-right": "20px",
                         "margin-bottom": "20px"
                         }} variant="success" name="1" onClick={this.handleClick}>{this.state.situation.text_choix1} </Button>
                 }
-                {!this.state.modalShow && !this.state.FinPartie && !this.state.hideB2 && this.state.situation.text_choix2 &&
-                     <Button style= {{
+                {!this.state.FinPartie && !this.state.hideB2 && this.state.situation.text_choix2 &&
+                    <Button style= {{
                         "margin-right": "20px",
                         "margin-bottom": "20px"
                         }} variant="success" name="2" onClick={this.handleClick}>{this.state.situation.text_choix2}</Button>
                 }
-                {!this.state.modalShow && !this.state.FinPartie && !this.state.hideB3 && this.state.situation.text_choix3 &&
-                      <Button variant="success" name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
+                {!this.state.FinPartie && !this.state.hideB3 && this.state.situation.text_choix3 &&
+                    <Button variant="success" name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
                 }
 
-                {this.state.ShowResult && this.state.Result &&
+                {!this.state.FinPartie && this.state.ShowResult && this.state.Result &&
                     <MyVerticallyCenteredModal
                         show={this.state.modalShow}
                         text={this.state.Result}

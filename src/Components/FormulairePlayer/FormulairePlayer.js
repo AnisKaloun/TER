@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
-import {Prompt} from "react-router-dom";
 
 
 export default class FormulairePlayer extends React.Component {
@@ -56,16 +55,12 @@ export default class FormulairePlayer extends React.Component {
                 'text-align' : 'center',
                 'background-color': 'rgb(230,230,230)'
             }}>
-                <Prompt
-                 when={!this.state.Age}
-                 message="Etes vous sur de vouloir sortir ? vos informations seront perdu "
-                />
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group as={Col} controlId="formAge"  style= {{
                     "margin-bottom": "20px"
                     }}>
                         <Form.Label>Age</Form.Label>
-                        <Form.Control required type="number" name="Age" value={this.state.Age} onChange={this.handleChange} placeholder="Age" />
+                        <Form.Control required type="number" name="Age" min="0" value={this.state.Age} onChange={this.handleChange} placeholder="Age" />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formSexe" style= {{
