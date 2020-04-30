@@ -1,6 +1,7 @@
 var mysql = require('mysql');
 var express = require('express');
 var app = express();
+const path = require('path');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,6 +11,12 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
     res.setHeader('Access-Control-Allow-Headers', '*');
     next();
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Set up connection to database.
@@ -129,7 +136,7 @@ app.post("/InsertionResultat",(req,res)=>
     
 })
 
-app.listen(8888);
+app.listen(8100, "0.0.0.0");
 
 function jsonConcat(o1, o2) {
     for (var key in o2) {
