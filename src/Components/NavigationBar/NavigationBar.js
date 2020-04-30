@@ -7,7 +7,7 @@ export default class NavigationBar extends React.Component {
     render() {
         return (
             <Navbar bg="dark" variant="dark"  expand="lg">
-                <Navbar.Brand href="/"><strong><span style={{color:"rgb(40,167,69)"}}>B</span>reaking <span style={{color:"rgb(40,167,69)"}}>B</span>ad</strong></Navbar.Brand>
+                <Link to="/"><Navbar.Brand ><strong><span style={{color:"rgb(40,167,69)"}}>B</span>reaking <span style={{color:"rgb(40,167,69)"}}>B</span>ad</strong></Navbar.Brand></Link>
                 <Navbar.Brand ><span style={{color:"rgb(40,167,69)"}}>R</span>ésultats (lien pas dispo)</Navbar.Brand>
             </Navbar>
         );

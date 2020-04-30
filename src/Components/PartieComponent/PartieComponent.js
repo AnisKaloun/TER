@@ -4,7 +4,8 @@ import axios from 'axios';
 import {Prompt} from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 
-const Url = '0.0.0.0:8100';
+const Url = 'http://mrvincent13.alwaysdata.net';
+//const Url = 'http://localhost:8100';
 
 
 
@@ -272,7 +273,7 @@ export default class PartieComponent extends React.Component {
 
     render() {
         console.log("Situation : " + this.state.situation.id_situation + " Situation Choix1: " + this.state.situation.id_situation1 + " Situation Choix2: " + this.state.situation.id_situation2);
-
+        console.log("Prompt : "+this.state.row_insertion.id_choix1);
         return (
             <div style={{ 
                 padding: '20px',
@@ -285,12 +286,13 @@ export default class PartieComponent extends React.Component {
             }}>
                 <Prompt
                  when={this.state.row_insertion.id_choix1}
-                 message="Êtes-vous sûr de vouloir quitter la partie avant la fin ? Toute progression sera alors perdue ! "/>
+                 message="Êtes-vous sûr de vouloir quitter la partie avant la fin ? Toute progression sera alors perdue !"
+                 />
 
                 <p><strong>Joueur : {this.props.location.state.player.charAt(0).toUpperCase() + this.props.location.state.player.substr(1)}</strong></p>
                 {!this.state.situation.text_situation &&
                     <React.Fragment>
-                        <p>Récupération des données du scénario ...</p>
+                        <p>Récupération des données du scénario ... (la connexion avec le serveur peut bugger et nécessiter que vous rechargiez la page)</p>
                         <Spinner animation="grow" variant="success" />
                     </React.Fragment>
                 }
