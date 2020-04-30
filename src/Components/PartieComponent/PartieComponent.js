@@ -317,7 +317,7 @@ export default class PartieComponent extends React.Component {
                     <Button variant="success" name="3" onClick={this.handleClick}>{this.state.situation.text_choix3}</Button>
                 }
 
-                {!this.state.FinPartie && this.state.ShowResult && this.state.Result &&
+                {this.state.ShowResult && this.state.Result &&
                     <MyVerticallyCenteredModal
                         show={this.state.modalShow}
                         text={this.state.Result}
