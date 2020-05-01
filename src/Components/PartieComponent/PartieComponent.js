@@ -204,6 +204,19 @@ export default class PartieComponent extends React.Component {
         }
     }
 
+    CheckSituation(number)
+    {
+        if (number == 1 && this.state.situation.id_situation1) {
+            return true;
+        }
+        else if (number == 2 && this.state.situation.id_situation2) {
+            return true;
+        }
+        else if (number == 3 && this.state.situation.id_situation3) {
+            return true;
+        }
+        return false;
+    }
 
     CasParticulierHank(situationNumber)
     {
@@ -224,7 +237,7 @@ export default class PartieComponent extends React.Component {
         console.log("number of choice" + indice);
         indice++;
         this.AfficherResult(e.currentTarget.name);
-        if (this.state.situation.id_situation1 && this.state.situation.id_situation2) {
+        if (this.CheckSituation(e.currentTarget.name)) {
             this.NextSituation(e.currentTarget.name);
         }
         else {
