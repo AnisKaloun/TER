@@ -298,7 +298,7 @@ export default class PartieComponent extends React.Component {
                 'background-color': 'rgb(230,230,230)'
             }}>
                 <Prompt
-                 when={this.state.row_insertion.id_choix1}
+                 when={this.state.row_insertion.id_choix1 && !this.state.FinPartie}
                  message="Êtes-vous sûr de vouloir quitter la partie avant la fin ? Toute progression sera alors perdue !"
                  />
 
