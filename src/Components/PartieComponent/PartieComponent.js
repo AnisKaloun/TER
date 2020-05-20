@@ -4,8 +4,8 @@ import axios from 'axios';
 import {Prompt} from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 
-const Url = 'http://mrvincent13.alwaysdata.net';
-//const Url = 'http://localhost:8100';
+//const Url = 'http://mrvincent13.alwaysdata.net';
+const Url = 'http://localhost:8100';
 
 
 
