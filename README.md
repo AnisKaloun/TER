@@ -9,3 +9,7 @@ Cette commande nous permet de crée la version de production de notre site (qui 
 ### `node Serveur.js`
 
 Cette commande lanceras le Serveur et en même temps lanceras le site sur l'addresse :*'http://localhost:8100'*
+
+### Data
+
+les données sont sur le fichier DATAS.csv
